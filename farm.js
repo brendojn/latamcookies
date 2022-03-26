@@ -28,8 +28,8 @@ async function getBrowser(browserDataFolder) {
         .deviceDescriptor(require(device))
         .displayUserActionLayer(true)
         .vanillaLaunchOptions({
-            headless: true,
-            executablePath: "/usr/bin/microsoft-edge",
+            headless: false,
+           // executablePath: "/usr/bin/microsoft-edge",
         })
         .proxy({
             proxy: process.env.PROXY_HOST,
@@ -48,10 +48,10 @@ async function testCookie(cookie) {
         var config = {
             method: 'get',
             timeout: 10000,
-            proxy: {
-                host: '127.0.0.1',
-                port: '8888',
-            },
+            // proxy: {
+            //     host: '127.0.0.1',
+            //     port: '8888',
+            // },
             url: 'https://www.latamairlines.com/bff/air-offers/offers/search?sort=RECOMMENDED&cabinType=Economy&origin=SAO&destination=RIO&inFlightDate=null&inFrom=2022-05-18&inOfferId=null&outFlightDate=null&outFrom=2022-05-11&outOfferId=null&adult=1&child=0&infant=0&redemption=true&skyscanner_redirectid=U8RzwK6KR2SM1G8ujrjoLg&utm_campaign=br_latam_skyscanner_metasearch_perf_aon&utm_medium=metasearch&utm_source=skyscanner&utm_content=br_latam_perf_skyscanner_aon_nn_SAO-RIO_domestico_conversion_core_desktop',
             headers: { 
                 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36', 
@@ -138,9 +138,25 @@ function rand() {
     
             await page.goto(url);
             
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 5; i++) {
 
                 await page.mouse.down();
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.click(rand(), rand(), {delay: 100, button: 'right'});
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.click(rand(), rand(), {delay: 100, button: 'right'});
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.click(rand(), rand(), {delay: 100, button: 'right'});
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.move(rand(), rand());
+                await page.mouse.click(rand(), rand(), {delay: 100, button: 'right'});
                 await page.mouse.move(rand(), rand());
                 await page.mouse.move(rand(), rand());
                 await page.mouse.move(rand(), rand());
