@@ -1,8 +1,17 @@
-const redis = require("redis");
+const { createClient } = require("redis");
 
 module.exports = class Redis {
 
+    constructor() {
+        this.connection = null;
+    }
+
     static async getConnection() {
+
+        if (this.connection) {
+            
+            return this.connection;
+        }
 
         this.connection = createClient({
             socket: {
@@ -11,8 +20,12 @@ module.exports = class Redis {
             },
         });
     
-        await connection.connect();
-    
-        return connection;
+        await this.connection.connect();
+    }
+
+    static async save(cookie) {
+        
+        this.getConnection();
+        this.connection.set("COOKIES", cookie);
     }
 }
